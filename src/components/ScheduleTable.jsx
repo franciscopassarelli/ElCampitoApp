@@ -169,13 +169,11 @@ const ScheduleTable = () => {
 </TableCell>
 
 
-
-                      {[1, 2].map((court) => {
-                        const key = `${format(currentDay, 'dd-MM-yyyy')}_${time}_${court}`;
-                        const reservation = reservations[key];
-
-                        return (
-                          <TableCell
+{[1, 2].map((court) => {
+const key = `${format(currentDay, 'dd-MM-yyyy')}_${time}_${court}`;
+ const reservation = reservations[key];
+return (
+<TableCell
   key={court}
   sx={{
     backgroundColor: reservation
