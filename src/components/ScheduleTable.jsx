@@ -40,17 +40,21 @@ const ScheduleTable = () => {
   });
 
   useEffect(() => {
-    const fetchReservations = async () => {
+  const fetchReservations = async () => {
+    try {
       const querySnapshot = await getDocs(collection(db, 'reservations'));
       const resData = {};
       querySnapshot.forEach((doc) => {
         resData[doc.id] = doc.data();
       });
       setReservations(resData);
-    };
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    }
+  };
 
-    fetchReservations();
-  }, []);
+  fetchReservations();
+}, []);
 
   const handleDateChange = async (date) => {
     setLoading(true);
@@ -191,7 +195,6 @@ const ScheduleTable = () => {
     : ''}
 </TableCell>
 
-                        
                         );
                       })}
                     </TableRow>
