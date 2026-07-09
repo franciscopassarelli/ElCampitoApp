@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'; // Importamos el componente Navbar
 import Inicio from './components/Inicio'; // Importamos el componente Inicio
 import ScheduleTable from './components/ScheduleTable'; // Importamos el componente ScheduleTable
 import './App.css'; // Importamos el archivo CSS
+import Clima from './components/widgets/ApiClima/Clima'
+import Lluvia from './components/widgets/ApiClima/Lluvia'
 
 
 const App = () => {
@@ -13,6 +15,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Inicio />} /> {/* Página de inicio */}
         <Route path="/scheduletable" element={<ScheduleTable />} /> {/* Página de menú */}
+        <Route path="/clima" element={<Clima />} /> {/* Página de clima */}
+        <Route path="/lluvia" element={<Lluvia />} /> 
       </Routes>
     </Router>
   );

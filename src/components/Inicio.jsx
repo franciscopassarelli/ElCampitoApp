@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Clima from '../components/widgets/ApiClima/Clima';
 
 const texts = [
   'Diversión, competencia y pasión por el Tenis.',
@@ -42,18 +43,18 @@ const Inicio = () => {
 
   return (
     <Box
-      sx={{
-        height: '100vh',
-        width: '100%',
-        background: 'radial-gradient(circle at center, #1e1e1e 0%, #000000 100%)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem',
-        gap: 3,
-        overflow: 'hidden',
-      }}
+    sx={{
+      height: '100vh',
+      width: '100%',
+      background: 'radial-gradient(circle at center, #1e1e1e 0%, #000000 100%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem',
+      gap: 3,
+      overflow: 'hidden',
+    }}
     >
       <img
         src="/elcampito.png"

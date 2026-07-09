@@ -1,4 +1,3 @@
-// ScheduleTable.jsx (Solo Vista, sin nombres)
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -19,6 +18,8 @@ import {
 } from '@mui/material';
 import { db } from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
+import Clima from '../components/widgets/ApiClima/Clima';
+import Lluvia from '../components/widgets/ApiClima/Lluvia';
 
 const Loader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -26,6 +27,9 @@ const Loader = () => (
     <Typography variant="body1" sx={{ marginLeft: '10px' }}>Cargando...</Typography>
   </Box>
 );
+
+
+
 
 const ScheduleTable = () => {
   const today = new Date();
@@ -38,6 +42,8 @@ const ScheduleTable = () => {
     const minutes = i % 2 === 0 ? '00' : '30';
     return `${hour}:${minutes}`;
   });
+
+  
 
   useEffect(() => {
   const fetchReservations = async () => {
@@ -67,47 +73,41 @@ const ScheduleTable = () => {
     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, padding: '0', backgroundColor: '#2f2f2f', minHeight: '100vh', marginTop: '64px' }}>
      
       <Box sx={{ flex: '1', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginBottom: { xs: '20px', md: '0' } }}>
-        <Box 
-          sx={{ 
-            textAlign: 'center', 
-            marginBottom: '20px',
-            background: 'linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))',
-            padding: '10px',
-            borderRadius: '50%',
-            width: '220px',
-            height: '220px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          <img 
-            src="/elcampito1.png" 
-            alt="Logo" 
-            style={{ 
-              width:'200px',
-              height:'200px',
-              borderRadius:'50%',
-              objectFit: 'contain'
-            }} 
-          />
-        </Box>
+       
 
       
+<Box>
+  <Typography
+    variant="h5"
+    align="center"
+    gutterBottom
+    sx={{ color: "#fff" }}
+  >
+    Selecciona un día
+  </Typography>
 
-        <Box>
-          <Typography variant="h5" align="center" gutterBottom sx={{ color: '#fff' }}>
-            Selecciona un día
-          </Typography>
-          <DatePicker
-            selected={currentDay}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            inline
-            todayButton="Hoy"
-            locale={es}
-          />
-        </Box>
+  <DatePicker
+    selected={currentDay}
+    onChange={handleDateChange}
+    dateFormat="dd/MM/yyyy"
+    inline
+    todayButton="Hoy"
+    locale={es}
+  />
+
+  <Box
+  sx={{
+    mt: 3,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 2,
+  }}
+>
+  <Clima fecha={currentDay} />
+  <Lluvia fecha={currentDay} />
+</Box>
+</Box>
       </Box>
 
       <Box sx={{ flex: '3', padding: '20px' }}>
@@ -209,7 +209,11 @@ return (
   <i className="fab fa-whatsapp text-4xl text-white"></i> {/* Agrega el icono de WhatsApp */}
 </a>
 </div>
-    </Box>
+
+
+        </Box>
+
+        
     
   );
 };
